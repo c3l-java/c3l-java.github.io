@@ -1,0 +1,1 @@
+node "C:\Users\Bjorn\Documents\GitHub\c3l-java.github.io\vendor\less\less.js\bin\lessc" "C:\Users\Bjorn\Documents\GitHub\c3l-java.github.io\styles\main.less" "C:\Users\Bjorn\Documents\GitHub\c3l-java.github.io\styles\compiled\main.css"

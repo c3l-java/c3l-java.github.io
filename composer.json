@@ -1,0 +1,44 @@
+{
+  "name": "ssa-commander/ssa-commander",
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "less/less.js",
+        "version": "dev-master",
+        "dist": {
+          "url": "https://github.com/less/less.js/archive/master.zip",
+          "type": "zip"
+        }
+      }
+    }
+  ],
+	"require": {
+		"components/jquery": "1.*",
+    "components/underscore": "*",
+		"twitter/bootstrap": "3.*",
+		"fortawesome/font-awesome": "4.*",
+		"less/less.js": "dev-master",
+    "components/angular.js": "dev-master"
+  },
+  "config": {
+    "component": {
+      "packages": [
+        {
+          "name": "bootstrap",
+          "location": "../../vendor/twitter/bootstrap/js"
+        }
+      ],
+      "shim": {
+        "bootstrap/collapse": {
+          "deps": ["bootstrap/transition"]
+        }
+      },
+      "paths": {
+        "scripts": ".."
+      }
+    },
+    "component-dir": "scripts/components",
+    "component-baseurl": "scripts/components"
+  }
+}
