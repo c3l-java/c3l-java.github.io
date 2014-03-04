@@ -15,3 +15,11 @@ function Ctrl($scope) {
     $scope.template = 'documents/start.html';
   }
 }
+
+function Markdown($element){
+  require(['jquery', 'markdown/markdown'], function($, markdown){
+    var element = $($element);
+    
+    element.html(markdown.toHTML(element.html()));
+  });
+}

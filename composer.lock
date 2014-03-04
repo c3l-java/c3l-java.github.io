@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "895244f41ae43dc1b89ea3355cf82a15",
+    "hash": "5e49ea0ce4b1082c17aae618ca3f5579",
     "packages": [
         {
             "name": "components/angular.js",

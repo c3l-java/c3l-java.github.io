@@ -15,6 +15,10 @@ var components = {
         {
             "name": "bootstrap",
             "location": "../../vendor/twitter/bootstrap/js"
+        },
+        {
+            "name": "markdown",
+            "location": "../../vendor/evilstreak/markdown-js/src"
         }
     ],
     "shim": {

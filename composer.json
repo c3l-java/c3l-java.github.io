@@ -11,6 +11,17 @@
           "type": "zip"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "evilstreak/markdown-js",
+        "version": "dev-master",
+        "dist": {
+          "url": "https://github.com/evilstreak/markdown-js/archive/master.zip",
+          "type": "zip"
+        }
+      }
     }
   ],
 	"require": {
@@ -19,7 +30,8 @@
 		"twitter/bootstrap": "3.*",
 		"fortawesome/font-awesome": "4.*",
 		"less/less.js": "dev-master",
-    "components/angular.js": "dev-master"
+    "components/angular.js": "dev-master",
+    "evilstreak/markdown-js": "dev-master"
   },
   "config": {
     "component": {
@@ -27,6 +39,10 @@
         {
           "name": "bootstrap",
           "location": "../../vendor/twitter/bootstrap/js"
+        },
+        {
+          "name": "markdown",
+          "location": "../../vendor/evilstreak/markdown-js/src"
         }
       ],
       "shim": {
