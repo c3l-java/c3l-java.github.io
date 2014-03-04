@@ -1,0 +1,99 @@
+<div class="container">
+  <div ng-controller="Markdown">
+Hur en (webb)server fungerar.
+=============================
+
+* En server är ett program som tar emot anrop, och serverar innehåll som svar.
+
+  * EN dator med ett serverprogram kallas då också för server
+
+  * Man behöver ett IP (`x.y.z.t`) nummer för att kontakta en server. (typ telefonnummer)
+
+    * IP-numret `127.0.0.1` pekar alltid på din egen dator
+
+  * Dock förenklas detta genom DNS-hostnames (t.ex. `google.com`) och ibland NETBIOS-names (t.ex. `\\MACBOOKAIR-D95E`)
+
+    * DNS-hostnamet localhost pekar alltid på `127.0.0.1` (dvs din egen dator)
+
+  * Man anropar alltid en server genom en port. Portar har nummer `1-65535`.
+
+    * Servern måste lyssna på den port du anropar.
+
+    * Port som ej avlyssnas = Inget svar.
+
+    * Port som lyssnar, men förväntar sig något annat = Fel svar.
+
+  * Om en klient anropar en server med rätt port, så bildas en anslutning.
+
+    * De två datorerna (IP-nummer och port)
+
+  * En anslutning bildas mellan två IP-nummer och två portar
+
+    * Så (datorn=klienten med) IP-nummer `a.b.c.d` port `10000` kontaktar (datorn=servern med) `e.f.g.h` port `20000`
+
+      * varje IP-nummer+port i en anslutning kallas en “socket”
+
+    * Webbläsare är klienter som anropar (webb)servrar som svarar genom att leverera webbinnehåll, t.ex. HTML.
+
+      * Detta kallas HTTP (hypertext)
+
+    * Man skriver serverns DNS-namn (host) som översätts till en IP-adress. Porten är alltid `80`, om inte annat anges. (eller om det inte är HTTP)
+
+    * [google.com](http://google.com/) ← din dator anropar `62.119.230.45` via port `80`
+
+    * Man kan ange en annan port genom att skriva `:x` efter hostname.
+
+    * [google.com:80](http://google.com:80/) ← samma, eftersom porten ändå är `80` om inte annat anges
+
+    * Vi kan pröva en port som brukar användas för annat än webb, och då får vi ett svar, men som inte webbläsaren hanterar.
+
+    * [google.com:21](http://google.com:21/) ← besvarar med FTP (inte webbinnehåll = HTTP), webbläsaren förstår inte
+
+    * Vi kan pröva en port som inte används, och då får vi en lång paus innan webbläsaren ger upp.
+
+    * [google.com:573](http://google.com:573/) ← servern lyssnar inte på denna port, webbläsaren väntar på svar tills den ger upp
+
+Laboration: Implementera en enkel webbserver. ([länk](https://gist.github.com/bornemix/9280604))
+------------------------------------------------------------------------------------------------
+
+* Webbservrar är egentligen väldigt avancerade program, men principen är enkel. Lyssna på anrop via port 80, och svara med matchande innehåll.
+
+* Att göra en server kräver egentligen trådar, så att den kan lyssna på flera anrop samtidigt, och på samma gång hålla igång t.ex. kommandoprompten för den som övervakar servern.
+
+  * Vi kommer göra en server som “fryser” (eller “hänger sig”) medan den väntar på anrop, och när ett anrop kommer, så svarar vi med ett textinnehåll, och avslutar sedan applikationen.
+
+* Vilken port ska vi lyssna på?
+
+  * Man vill i regel lyssna på port `80` för webbinnehåll, för att detta är default-porten som webbläsare förväntar sig.
+
+  * Vissa system har vanliga siten på port `80`, och administratörsgränssnittet på en annan port (t.ex. Oracle, Escenic). Sedan kan man via brandväggen göra så man inte kommer åt den utifrån.
+
+  * Dock så är ibland port `80` upptagen av en annan server ([länk](http://lmgtfy.com/?q=whats+blocking+port+80)) som lyssnar (t.ex. [Skype](http://lmgtfy.com/?q=skype+is+blocking+port+80)), och många serverprogramvaror har därför en annan port som standard.
+
+  * Vissa operativsystem kräver att man kör som administratör eller `sudo` för att lyssna på portar under `1024` ([länk](http://lmgtfy.com/?q=sudo+listen+port+1024)), och många serverprogramvaror har därför en annan port som standard.
+
+  * Vi kommer att lyssna på port `80`, men om du inte får `sudo` att fungera, så kan du ändra den till t.ex. `8080`
+  
+  * OBS: Använd Firefox för att hämta filen, om du får problem med att Chrome inte kan visa webbsidan.
+
+Uppgift: Skapa en enkel server i era befintliga projekt med 1 API-anrop för ert projekt.
+----------------------------------------------------------------------------------------
+
+* Lite meta-instruktioner:
+
+  * Alla grupper ska delas upp i enskilda projekt!
+
+  * Hur många timmar kan detta ta?
+
+  * Timpris?
+
+* Kommentera bort allting i din `main()`-metod (Kommando-7) och klistra in [denna kod](https://gist.github.com/bornemix/9280604).
+
+* Om du inte kan/vill köra `sudo`, så ändra `80` till `8080`.
+
+* Om du kör som sudo, så surfa in på [localhost](http://localhost/) eller [127.0.0.1](http://127.0.0.1/).
+
+* Om du ändrade till `8080`, så surfa in på [localhost:8080](http://localhost:8080/) eller [127.0.0.1:8080](http://127.0.0.1:8080/).
+
+  </div>
+</div>
