@@ -4,6 +4,13 @@ document.getElementsByTagName('head')[0].insertBefore(viewPortTag, document.getE
 
 
 require(['jquery', 'underscore', 'angularjs'], function ($, _) {
+    angular.directive('footnote', function() {
+      return {
+        restrict: 'E',
+        templateUrl: 'my-customer.html'
+      };
+    });
+    
 });
 
 function Ctrl($scope) {
