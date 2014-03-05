@@ -24,9 +24,9 @@ Hur servlets fungerar.
 	* Kan webbläsaren förstå HTML från vår server?
 		* Pröva med html-taggar
 			* Skicka med rätt HTTP-headers så att svaret blir korrekt för alla webbläsare
-				* `HTTP/1.1 200 OK`
+				* `HTTP/1.1 200 OK` och sedan en newline
 				* `Content-Type: text/html`<footnote>Här kan man behöva lägga till `;charset=utf-8` för att få bukt med UTF8-kodning.</footnote>
-				* Två newlines
+				* sedan två newlines
 	* Avsluta inte applikationen förrän “any key” har tryckts
 	* Ta hand om fler anrop efter varandra
 	* GÖR HÄR EN EGEN METOD <footnote>Av din Hello World-kod.</footnote> TACK.
@@ -34,6 +34,7 @@ Hur servlets fungerar.
 	* Ta hand om fler anrop samtidigt
 		* Trådar!!!
 		* [The problem with threads](http://lmgtfy.com/?q=the+problem+with+threads)
+  * [Senaste versionen av vår hemmasnickrade webbserver](https://gist.github.com/bornemix/9364146) (OBS! Helt misslyckad. Använd ej! Den skapar bara Threads tills minnet tar slut.)
 	* Demonstrera hur svårt det blir bara att räkna antalet sekunder efter varje request …
 		* Vem ska räkna och skriva ut? En till tråd.
 		* Vem ska resetta räknaren? Den första tråden.
@@ -44,10 +45,11 @@ Hur servlets fungerar.
 * Varför ska VI behöva göra allt det här??? Vi vill bara ha en server som kör Javakod!
 * Skulle det inte vara skönt om denna “EGNA METOD” var det “enda” vi var tvungna att skriva?
 	* Faktum är att en av skaparna bakom Java fick denna idé redan 1995, men annat kom i vägen, så första Servlet-versionen kom 1997 (med Java 1.1 tror jag) hela tre företag implementerade denna lösning samtidigt: Sun, Oracle och Netscape (se [denna artikel](https://weblogs.java.net/blog/driscoll/archive/2005/12/servlet_history_1.html) för lite historia)
-* “Låt oss utveckla servern, och ni kan skicka oss java-projekt som zip <u>arkiv</u>”
+* “Låt oss utveckla servern, och ni kan skicka oss java-projekt som zip _arkiv_”
 	* _AR_kiverade _W_ebbapplikationer
 		* _W_ebbapplikations_AR_kiv
 			* _WAR_
+
 Laboration: Installera Tomcat. Kompilera en servlet som använder Bootstrap via CDN.
 ===================================================================================
 * Installera Tomcat
