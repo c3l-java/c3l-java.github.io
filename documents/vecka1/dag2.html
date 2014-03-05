@@ -17,23 +17,23 @@ Hur servlets fungerar.
 	* Vi vill ha ett enkelt sätt att “servera” filer, inte bara java-kod
 		* Bilder, Textdokument …
 	* Vi fattade inte så mycket, och brydde oss inte så mycket, om det som hände i programmet
-		* (förutom orden ´“Hello, world!”´)
+		* (förutom orden “Hello, world!”)
 		* = Mycket kod för lite funktionalitet
 		* Allt annat kallas för “boilerplate”
 * Vad skulle vi behöva göra för att göra en bättre server?
 	* Kan webbläsaren förstå HTML från vår server?
 		* Pröva med html-taggar
 			* Skicka med rätt HTTP-headers så att svaret blir korrekt för alla webbläsare
-				* HTTP/1.1 200 OK
-				* Content-Type: text/html
+				* `HTTP/1.1 200 OK`
+				* `Content-Type: text/html`<footnote>Här kan man behöva lägga till `;charset=utf-8` för att få bukt med UTF8-kodning.</footnote>
 				* Två newlines
 	* Avsluta inte applikationen förrän “any key” har tryckts
 	* Ta hand om fler anrop efter varandra
-	* GÖR HÄR EN EGEN METOD TACK.
+	* GÖR HÄR EN EGEN METOD <footnote>Av din Hello World-kod.</footnote> TACK.
 		* Vi kommer tillbaka till denna.
 	* Ta hand om fler anrop samtidigt
 		* Trådar!!!
-		* (The problem with threads)[http://lmgtfy.com/?q=the+problem+with+threads]
+		* [The problem with threads](http://lmgtfy.com/?q=the+problem+with+threads)
 	* Demonstrera hur svårt det blir bara att räkna antalet sekunder efter varje request …
 		* Vem ska räkna och skriva ut? En till tråd.
 		* Vem ska resetta räknaren? Den första tråden.
@@ -43,47 +43,54 @@ Hur servlets fungerar.
 	* Iallafall…
 * Varför ska VI behöva göra allt det här??? Vi vill bara ha en server som kör Javakod!
 * Skulle det inte vara skönt om denna “EGNA METOD” var det “enda” vi var tvungna att skriva?
-	* Faktum är att en av skaparna bakom Java fick denna idé redan 1995, men annat kom i vägen, så första Servlet-versionen kom 1997 (med Java 1.1 tror jag) hela tre företag implementerade denna lösning samtidigt: Sun, Oracle och Netscape (se (denna artikel)[https://weblogs.java.net/blog/driscoll/archive/2005/12/servlet_history_1.html] för lite historia)
-* “Låt oss utveckla servern, och ni kan skicka oss java-projekt som zip arkiv”
-	* ARkiverade Webbapplikationer
-		* WebbapplikationsARkiv
-			* WAR
+	* Faktum är att en av skaparna bakom Java fick denna idé redan 1995, men annat kom i vägen, så första Servlet-versionen kom 1997 (med Java 1.1 tror jag) hela tre företag implementerade denna lösning samtidigt: Sun, Oracle och Netscape (se [denna artikel](https://weblogs.java.net/blog/driscoll/archive/2005/12/servlet_history_1.html) för lite historia)
+* “Låt oss utveckla servern, och ni kan skicka oss java-projekt som zip <u>arkiv</u>”
+	* <u>AR</u>kiverade <u>W</u>ebbapplikationer
+		* <u>W</u>ebbapplikations<u>AR</u>kiv
+			* <u>WAR</u>
 Laboration: Installera Tomcat. Kompilera en servlet som använder Bootstrap via CDN.
 ===================================================================================
 * Installera Tomcat
 	* Hur många vet INTE var man laddar ner tomcat?
 		* Om ni sagt nej - gör inte om detta, någonsin.
 			* Gör snygga räddningar, please!
-		* Hitta Tomcat själv
-* Starta Tomcat från cmd
-	* bin-mappen i alla applikationer innehåller “alltid” körbara filer
-	* "Allt" i bin-mappen måste ha exekveringsrättigheter.
-		* Kör i kommandoprompten (i bin): chmod a+x *
-	* Kör sedan: ./startup.sh
+		* Hitta Tomcat själva!
+* Starta Tomcat från terminalen
+	* `bin`-mappen i alla applikationer innehåller “alltid” körbara filer
+	* "Allt" i `bin`-mappen måste ha exekveringsrättigheter.
+		* Kör i kommandoprompten (i `bin`): `chmod a+x *`
+	* Kör sedan: `./startup.sh`
 	* Om det står “Tomcat started.” så är du i hamn
 	* Du kan tillochmed stänga din terminal!
-	* Försök nu att surfa in på port 8080
+	* Försök nu att surfa in på port `8080`
 * Testa att publicera ett webbapplikationsarkiv med en enda HTML-fil
-	* Skapa en ny fil på skrivbordet som heter index.htm
-	* Komprimera mapp
-	* Byt namn till hej.war
-	* Lägg i tomcat/webapps/
-	* Testa surfa in på localhost:8080/hej/.
-	* Ta bort war-filen, katalogen försvinner också
+	* Skapa en ny fil på skrivbordet som heter `index.htm`
+	* Komprimera filen
+	* Byt namn till `hej.war`
+	* Lägg i `tomcat/webapps/`
+	* Testa surfa in på `localhost:8080/hej/`.
+	* Ta bort `war`-filen, katalogen försvinner också
 	* Uppdatera war-filen, katalogen försvinner och skapas igen
-		* Detta är iofs problematiskt om man har en 1gb site, tomcat försöker börja packa upp den men den är inte färdigkopierad
+		* Detta är bra om man har filer som är känsliga för att "mergas". Allt försvinner och packas upp igen.
+		* ... Men problematiskt om man har en 1gb `war`-fil. Tomcat försöker börja packa upp den innan den är färdigkopierad ([se här](http://stackoverflow.com/a/21308753))
 			* Stäng då av servern innan ni kopierar
 				* = Downtime för dina besökare
-	* Surfa in på olika kataloger
-		* … och ROOT…?
-	* Gör en WAR som heter ROOT.war
+	* Surfa in på de olika katalogerna som finns i `webapps`.
+		* `ROOT` går dock inte att surfa in på ([http://localhost:8080/])
+			* Detta för att en `war`-fil som heter `ROOT` hamnar i roten av webservern ([http://localhost:8080/]).
+	* Gör en WAR som heter `ROOT.war`
 * Vi ska nu lägga in något nytt i vår WAR…
 	* Starta eclipse
 	* Skapa nytt projekt
 	* Lägg till servlet API:et från tomcat till din Build Path
-	* Skapa ny klass som heter ServletTest
-	* ärv från HttpServlet
-		* Implementera doGet
+		* Om ni inte hittar `jar`-filen? LETA RUNT!
+		* Vet ni inte hur man lägger till externa filer till er build path? GOOGLA!
+	* Skapa ny klass som heter `ServletTest`
+	* Ärv från `HttpServlet`
+		* Vet du inte vilket paket den finns i?
+			* ANVÄND CONTENT ASSIST!
+		* OBS: Denna klass finns inte om inte servlet API:et från tomcat är inkluderat i build path
+		* Implementera `doGet`
 	* Referera till den “EGNA METODEN” åter igen
 	* Skriv ut svar till response.getOutputStream()
 	* Leta upp din .class fil
