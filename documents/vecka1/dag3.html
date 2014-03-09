@@ -2,103 +2,105 @@
   <div ng-controller="Markdown">
 *   Vi kan nu starta en server för vanliga HTML-filer
 
-        *   index.html
+  *   index.html
 
-            *   Utgå från nya boilerplate:n ([länk](https://gist.github.com/bornemix/9379001))
-            
-    *   Länka in en bild
+    *   Utgå från nya boilerplate:n ([länk](https://gist.github.com/bornemix/9379001))
+          
+  *   Länka in en bild
 
-        *   margin-top, text align på container &hellip;
+    *   margin-top, text align på container &hellip;
 
-        *   btn-lg på knapp &hellip;
+    *   btn-lg på knapp &hellip;
 
-        *   (gör nu strategiska radbrytningar för att sen kunna lägga in Javakod&hellip;)
+    *   (gör nu strategiska radbrytningar för att sen kunna lägga in Javakod&hellip;)
 
-        *   Welcome to Java
+    *   Welcome to Java
         
 *   Vi kan också göra en Servlet
 
-        *   Länka in servlet api
+  *   Länka in servlet api
 
-        *   Här är kod för att få mängden fritt JVM-minne (antal bytes)
+  *   Här är kod för att få mängden fritt JVM-minne (antal bytes)
 
-            *   Runtime**.**getRuntime**().**freeMemory**()**
-            
-    *   (Kom ihåg att man inte kan komma åt WEB-INF katalogen från webbläsaren)
+    * ```Runtime.getRuntime().freeMemory()```
     
+  *   (Kom ihåg att man inte kan komma åt WEB-INF katalogen från webbläsaren)
+  
 *   Men hur kombinerar vi dessa två teknologier dvs statisk HTML och innehåll genererat från Java?
 
-        *   Svaret ligger självklart inte i HTML-fil, utan i en Servlet.
+  *   Svaret ligger självklart inte i HTML-fil, utan i en Servlet.
 
-            *   (en Servlet kan skriva ut HTML, men en HTML-fil kan inte exekvera Java)
-            
-    *   Ta nu din HTML-fil och smärtsamt konvertera den till en Servlet
+    *   (en Servlet kan skriva ut HTML, men en HTML-fil kan inte exekvera Java)
+        
+  *   Ta nu din HTML-fil och smärtsamt konvertera den till en Servlet
 
-        *   ändra servlet-mapping till /
+    *   ändra servlet-mapping till /
         
 *   Detta är dock ganska tradigt.
 
-        *   Om vi ändå ska skriva mycket HTML och lite Java-kod, varför kan vi inte ha en speciell HTML-fil där vi kan &ldquo;skjuta in&rdquo; Java-kod där vi vill?
+  *   Om vi ändå ska skriva mycket HTML och lite Java-kod, varför kan vi inte ha en speciell HTML-fil där vi kan &ldquo;skjuta in&rdquo; Java-kod där vi vill?
 
-        *   Detta finns faktiskt!
+  *   Detta finns faktiskt!
 
-            *   Svaret heter JSP - Java Server Pages.
+    *   Svaret heter JSP - Java Server Pages.
             
 *   Skapa en fil som heter index.jsp
 
-        *   Ta innehållet från index.html
+  *   Ta innehållet från index.html
 
-        *   Testkör och se att ingenting är annorlunda
+  *   Testkör och se att ingenting är annorlunda
 
-        *   Kolla nu i work-mappen och hitta källkoden
+  *   Kolla nu i work-mappen och hitta källkoden
 
-### **Laboration: Gör ett test med JSP. Publicera till Tomcat från Eclipse. Gör Servlets på nya sättet.**
+Laboration: Gör ett test med JSP. Publicera till Tomcat från Eclipse. Gör Servlets på nya sättet.
+-------------------------------------------------------------------------------------------------
 
 *   Dags att installera en ny version av Eclipse: Eclipse for Java EE.
 
-        *   Hur många vet INTE var man laddar ner Eclipse for Java EE?
+  *   Hur många vet INTE var man laddar ner Eclipse for Java EE?
         
 *   När Eclipse startat, så gå till Servers-fliken och gör det ni ska göra.
 
 *   Surfa sedan in på [localhost:8080](http://localhost:8080/), och se att ni får ett 404 Error.
 
-        *   även om er Tomcat har en ROOT.war, så är detta normalt.
+  *   även om er Tomcat har en ROOT.war, så är detta normalt.
 
-            *   Tomcat från Eclipse körs inte med samma webapps-katalog som vanligt, utan under workspace katalogen.
+    *   Tomcat från Eclipse körs inte med samma webapps-katalog som vanligt, utan under workspace katalogen.
 
-                    *   .metadata/.plugins/org.eclipse.wst.server.core/tmp0
+      *   .metadata/.plugins/org.eclipse.wst.server.core/tmp0
 
-                        *   Detta för att dina vanliga webapps inte ska störas
+        *   Detta för att dina vanliga webapps inte ska störas
 
-                        *   Faktum är att allt hamnar i denna hemliga mapp
+        *   Faktum är att allt hamnar i denna hemliga mapp
 
-                            *   Loggar
+          *   Loggar
 
-                                *   Skräddarsydda inställningar
+            *   Skräddarsydda inställningar
 
-                                *   Work-mappen
-                                
-            *   Då kan Eclipse köra flera instanser av samma tomcat, bara de får egna hemliga kataloger! *wow*
+            *   Work-mappen
+                              
+    *   Då kan Eclipse köra flera instanser av samma tomcat, bara de får egna hemliga kataloger! *wow*
 
-                            *   Hur blir det då med flera applikationer på samma server?
+      *   Hur blir det då med flera applikationer på samma server?
                             
 *   Skapa nytt DYNAMISKT WEBBPROJEKT projekt
 
-        *   Dynamiskt betyder: Det kommer exekveras kod (på serverns sida)
+  *   Dynamiskt betyder: Det kommer exekveras kod (på serverns sida)
 
-            *   (inte som med döda HTML-filer)
+    *   (inte som med döda HTML-filer)
             
 *   Nu har de tre listorna på nytt projekt-dialogen valts automatiskt, eftersom vi skapade en server före vi skapade projektet
 
-        *   Skapar man ny server i samband med nytt projekt-dialogen, så väljs inte alltid Configuration
+  *   Skapar man ny server i samband med nytt projekt-dialogen, så väljs inte alltid Configuration
 
-            *   Då blir det till att välja Targeted runtime i projektinställningarna
-            
+    *   Då blir det till att välja Targeted runtime i projektinställningarna
+    
 *   WebContent: Där lägger ni era filer
 
-        *   JSP, bilder ...
+  *   JSP, bilder ...
 
-### **Uppgift: Skapa ett projekt med Eclipse (EE), med en JSP samt en Servlet.**
+Uppgift: Skapa ett projekt med Eclipse (EE), med en JSP samt en Servlet.
+------------------------------------------------------------------------
 
 *   Hur många timmar kan detta ta?
 
@@ -110,8 +112,8 @@
 
 *   Men innan du skickar den till mig, så testa den på din EGNA tomcat (inte genom eclipse)
 
-        *   Skicka då också källkoden till den** genererade Servleten som Tomcat skapat av** JSP:n
+  *   Skicka då också källkoden till den** genererade Servleten som Tomcat skapat av** JSP:n
 
-            *   Inget fuskande på denna punkt!
+    *   Inget fuskande på denna punkt!
   </div>
 </div>
