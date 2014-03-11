@@ -4,75 +4,75 @@
 
 *   Assets
 
-        *   L&auml;gg vad du vill h&auml;r
+    *   L&auml;gg vad du vill h&auml;r
 
-        *   Default-mapparna &auml;r inte &ldquo;l&aring;sta&rdquo; utan kan bytas ut
+    *   Default-mapparna &auml;r inte &ldquo;l&aring;sta&rdquo; utan kan bytas ut
 
-        *   = Enkel re-routing av &ldquo;d&ouml;da&rdquo; filer
+    *   = Enkel re-routing av &ldquo;d&ouml;da&rdquo; filer
 
-        *   Ingen h&aring;rdkodning av absolut URL
+    *   Ingen h&aring;rdkodning av absolut URL
 
-            *   Bra att inte ha ett &ldquo;magiskt&rdquo; mappnamn som t.ex. public, som aldrig kan &auml;ndras
+        *   Bra att inte ha ett &ldquo;magiskt&rdquo; mappnamn som t.ex. public, som aldrig kan &auml;ndras
 
-                *   Din mapp _kan_ flyttas, om det skulle bli aktuellt f&ouml;r din applikation
+            *   Din mapp _kan_ flyttas, om det skulle bli aktuellt f&ouml;r din applikation
 
-                    *   (Testa &auml;ndra till &ldquo;filer&rdquo;)
+                *   (Testa &auml;ndra till &ldquo;filer&rdquo;)
     *   Det sker s.k. reverse routing f&ouml;r att hitta din fil
 
-            *   Din fil ligger p&aring;:
+        *   Din fil ligger p&aring;:
 
-                    *   public/main.css
-        *   I din view:
+                *   public/main.css
+    *   I din view:
 
-                    *   @routes.Assets.at(&quot;test.css&quot;)
-        *   I din routes:
+                *   @routes.Assets.at(&quot;test.css&quot;)
+    *   I din routes:
 
-                    *   /assets &rarr; Assets.at(&hellip;)
+                *   /assets &rarr; Assets.at(&hellip;)
     *   LESS
 
-            *   [lesscss.org](http://lesscss.org)
+        *   [lesscss.org](http://lesscss.org)
 
-                *   CSS + extra features
+            *   CSS + extra features
 
-                *   F&ouml;r att f&aring; syntax highlighting:
+            *   F&ouml;r att f&aring; syntax highlighting:
 
-                    *   Eclipse &rarr; Preferences, s&ouml;k efter Content Types
+                *   Eclipse &rarr; Preferences, s&ouml;k efter Content Types
 
-                        *   V&auml;lj Text &rarr; CSS
+					*   V&auml;lj Text &rarr; CSS
 
-                        *   V&auml;lj Add &rarr; skriv in *.less
-        *   Testa att l&auml;gga in main.less med content:
+					*   V&auml;lj Add &rarr; skriv in *.less
+    *   Testa att l&auml;gga in main.less med content:
 
-                    *   body{ background-color: lighten(green, 10%) }
+                *   body{ background-color: lighten(green, 10%) }
 *   Det fungerar inte!
 
-        *   LESS &auml;r ingenting som webbl&auml;sare f&ouml;rst&aring;r
+    *   LESS &auml;r ingenting som webbl&auml;sare f&ouml;rst&aring;r
 
-        *   M&aring;ste &ldquo;preprocessas&rdquo;
+    *   M&aring;ste &ldquo;preprocessas&rdquo;
 
-            *   Detta tar Play hand om
+        *   Detta tar Play hand om
 *   _Managed_ assets
 
-        *   Skapa &ldquo;mappen&rdquo; (som ser ut som ett paket) assets inuti app
+    *   Skapa &ldquo;mappen&rdquo; (som ser ut som ett paket) assets inuti app
 
-        *   Mappas mot public
+    *   Mappas mot public
 
-            *   Testa med en txt-fil vilken som kommer f&ouml;rst
+        *   Testa med en txt-fil vilken som kommer f&ouml;rst
     *   Nu f&aring;r vi tillg&aring;ng till n&aring;gra h&auml;ftiga funktioner
 
-            *   (Du kan s&auml;kert g&ouml;ra dina egna moduler som g&ouml;r grejer med dessa filer)
+        *   (Du kan s&auml;kert g&ouml;ra dina egna moduler som g&ouml;r grejer med dessa filer)
     *   LESS
 
-            *   (L&auml;gg in main.less och l&auml;nka till main.css)
+        *   (L&auml;gg in main.less och l&auml;nka till main.css)
     *   LESS-minifering
 
-            *   l&auml;gg till .min.css ist&auml;llet
+        *   l&auml;gg till .min.css ist&auml;llet
     *   Javascript-minifiering
 
-            *   l&auml;gg till min.js ist&auml;llet
+        *   l&auml;gg till min.js ist&auml;llet
     *   Allt detta sker automatiskt endast om du har watch-mode aktiverat (~)
 
-            *   Lika bra att st&auml;nga av om det &auml;r en live-server
+        *   Lika bra att st&auml;nga av om det &auml;r en live-server
     *   Genererade filer hittar du under target/scala&hellip;/resource_managed/main/public/
 
 ### **Laboration: F&aring; LESS-filer att kompilera**
@@ -83,25 +83,25 @@
 
 *   Exempel: 1) Startsida 2) Kategorisida 3) Produktsida 4) Visa Shoppingvagn 5) Checkout
 
-        *   Tex Start &rarr; start.scala.html
+    *   Tex Start &rarr; start.scala.html
 
-        *   Category &rarr;
+    *   Category &rarr;
 
-            *   category.showOne.scala.html
+        *   category.showOne.scala.html
 
-                *   category.listAll.scala.html
+            *   category.listAll.scala.html
 
-                *   category.edit.scala.html
+            *   category.edit.scala.html
 
-                *   &hellip; Detta &auml;r bara exempel &hellip;
+            *   &hellip; Detta &auml;r bara exempel &hellip;
     *   Kom p&aring; alla olika views som kan t&auml;nkas beh&ouml;vas, men fyll dem med **v&auml;ldigt enkelt inneh&aring;ll**
 *   Var beredda p&aring; att vi ska lyfta &ouml;ver mycket av er webbshops-kod fr&aring;n era gamla projekt!
 
 *   Du F&Aring;R kopiera ett helt **Java** projekt (dvs den webbshop som ni redan har gjort) fr&aring;n n&aring;gon annan
 
-        *   Det som &auml;r viktigt i denna kurs &auml;r webbprogrammeringen
+    *   Det som &auml;r viktigt i denna kurs &auml;r webbprogrammeringen
 
-        *   Det mesta av er kod fr&aring;n dessa projekt kommer &auml;nd&aring; att beh&ouml;va skrivas om
+    *   Det mesta av er kod fr&aring;n dessa projekt kommer &auml;nd&aring; att beh&ouml;va skrivas om
 *   Ni ska checka in detta projekt **i GitHub** s&aring; ni inte beh&ouml;ver skicka det om och om igen
 
 Jag rekommenderar [den grafiska GitHub-klienten](http://mac.github.com/) ist&auml;llet f&ouml;r kommandoprompten
