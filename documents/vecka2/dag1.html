@@ -1,0 +1,137 @@
+<div class="container">
+  <div ng-controller="Markdown">
+
+## Hur Play (MVC) fungerar.
+
+## **
+
+*   Utveckla en JSP-applikation
+
+*   Se koden på [GitHub](https://gist.github.com/bornemix/9439940)
+
+*   Börjar det inte bli lite svårt att läsa HTML:en för all Java?
+
+*   (I princip all Wordpress-kod ser ut såhär)
+*   MVC
+
+*   Model
+
+*   Nästan ingen logik, bara domänobjekten
+*   View
+
+*   Nästan ingen logik, bara den HTML som ska till klienten*   Controller
+
+*   Här händer all business-logik
+*   “your mileage may vary”
+*   Java-stacken
+
+*   Java
+
+*   EJB
+
+*   Pooler av EJBs för att minska resurshantering*   Spring kan vara användbart
+
+*   Transaktionshantering
+
+*   MVC
+
+*   Java remote proxy objekt
+
+*   JNDI
+
+*   Marshalling av objekt
+*   Autentisering
+
+*   Aspekt-orienterad programmering
+
+*   Messaging
+*   Bygg-system såsom Ant men också Maven
+
+*   Continous Integration med automatiska tester
+*   Play
+
+*   Ett helt otroligt gäng som sitter bakom
+
+*   VDn är en svensk som kallas “sveriges bästa utvecklare”
+
+*   Vice VD är skaparen till Java-kompilatorn
+
+*   Rådgivare till styrelsen är skaparen till java (James Gosling)
+
+*   Samt andra professorer, produtvecklare och genier.
+*   Teknologierna bakom är lika otroliga
+*   Live utbyte av kod i Javavärlden är som jultomten
+
+*   Man har hört talas om det, men aldrig sett det på riktigt
+*   Routes sköter vägarna från URL till Controller
+
+### Laboration: Installera Play via kommandoprompten.
+
+*   Installera Play.
+
+*   Ladda ner Play.
+
+*   Packa upp det på Skrivbordet.
+
+*   Döp mappen till play.
+*   Skapa en ny webbapplikation.
+
+*   Öppna din terminal.
+
+*   Gå till skrivbordet.
+
+*   Skriv play new play-test.
+
+*   Detta skapar ett Play-projekt som heter play-test.
+*   För att kunna anropa Play från andra ställen än just Play-mappen, så kan man lägga Play i vår PATH.
+*   Förbered din applikation för att öppnas med Eclipse.
+
+*   Öppna ett terminalfönster och gå till din applikationsmapp (i mitt fall play-test).
+
+*   Starta Play genom att skriva play.
+
+*   Om du inte gjort någonting med PATH, som vi sade att man kan göra, så måste du här skriva hela sökvägen.
+*   Skriv i din Play-prompt: eclipse
+*   Förbered Eclipse
+
+*   För att använda Play på bästa sätt, och få direkt respons från Play när den kompilerar dina filer, så bör du installera Eclipse-pluginen för Play.
+*   Importera till Eclipse
+
+*   Starta nu Eclipse (för Java EE).
+
+*   Hoppas du har installerat pluginen för Play.
+*   Välj Eclipse → Preferences och klicka för “Refresh workspace on startup” och “Refresh using native hooks or polling”.
+
+*   I ditt workspace, välj Import → Existing project.
+
+*   Välj location: Skrivbordet, och sedan bör ditt projekt synas förikryssat.
+
+*   Dölj alla externa .jar-filer så det inte blir så trångt
+*   Kör igång servern.
+
+*   Skriv ~run.
+
+*   Besök [localhost:9000](http://localhost:9000).
+*   Ta bort test/default package och alla filer däri
+
+*   Testing är bra men kommer inte gynna oss just nu
+*   Ta bort alla views**
+
+### Uppgift: Skapa en MVC-applikation och skicka den till mig.
+
+## 
+
+*   Routes: Din applikation ska innehålla tre routes
+
+*   En för “startsidan”
+
+*   En för “visa hur mycket fritt minne min JVM har”
+
+*   En för “jag vill se vilken (string) parameter jag skrivit i min URL”
+
+*   Dessa routes ska använda controllern som ingår (Application.java), men anropa olika metoder
+
+*   t.ex. “startpage()” “showFreeMemory()” “showMeMyParameter(String parameter)”
+*   Den ska bygga på Bootstrap som tidigare
+  </div>
+</div>
