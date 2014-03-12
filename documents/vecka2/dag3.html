@@ -1,0 +1,51 @@
+<div class="container">
+  <div ng-controller="Markdown">
+  	## **Hur templating fungerar**
+
+*   Klasser genereras av templates
+
+*   Skicka in variabler via metoden mintemplate.render(MINAPARAMETRAR).
+
+*   Dessa parametrar definieras p&aring; f&ouml;rsta raden i templatefilen:
+
+        *   @(parameter1: String, parameter2: Int, parameter3: Product, parameter4: List[Product])
+*   Nu kan du skriva ut dessa variabler:
+
+        *   @message
+
+        *   @product.getName()
+
+        *   @products(0).getName() &nbsp;&nbsp;&nbsp;?
+*   Du kan tillochmed anropa andra templates
+
+        *   @minandratemplate()
+*   Du kan tillochmed kasta in Html till andra templates
+
+        *   N&ouml;j dig med att du ska skriva till, efter f&ouml;rsta parentesen: (content: Html)
+
+            *   Och d&aring; i anropet:
+
+        			@minandratemplate(...) {
+
+            			&nbsp;&nbsp;&nbsp;&hellip; h&auml;r kommer den Html jag vill f&aring; in i @content &hellip;
+
+            			}
+*   Loopar
+
+        *   @for(product &lt;- products) {
+
+        		&nbsp;&nbsp;&nbsp;Produkt som heter @product.getName() ...
+
+        		}
+
+### **Laboration: Visa template hierarchy, loops****...**
+
+*   &nbsp;
+
+### **Uppgift: Visa och lista fusk-objekt p&aring; de sidor vi skapat.**
+
+*   L&auml;gg in era dom&auml;nobjekt i paketet &ldquo;models&rdquo;
+
+*   Skapa dem i era anrop
+  </div>
+</div>
