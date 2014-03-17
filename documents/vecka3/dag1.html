@@ -1,0 +1,134 @@
+<div class="container">
+  <div ng-controller="Markdown">
+
+## Hur ORM fungerar.
+
+*   Vi har nu gjort v&aring;ra fusk-objekt, samt listning av dessa i v&aring;ra templates.
+
+*   Nu ska vi inte anv&auml;nda JDBC
+
+    *   Vi orkar inte skriva massa SQL
+
+    *   Vi orkar inte populera v&aring;ra objekt med v&auml;rden fr&aring;n DB
+
+        *   Och prata inte ens om objekt som inneh&aring;ller andra objekt!
+*   Vi vill helt enkelt kunna slippa att beh&ouml;va **manuellt** h&aring;lla v&aring;ra objekt synkade med databasen
+
+*   Jobbet &auml;r allts&aring; Mappning av Objekt mot Relationsdatabaser
+
+    *   &ldquo;Object Relational Mapping&rdquo;
+
+    *   Som tur &auml;r s&aring; finns det ramverk f&ouml;r detta, s.k. ORM Frameworks
+*   Avancerade funktioner
+
+    *   ID-generering
+
+    *   Collections
+
+    *   Lazy loading
+
+    *   Cascade deletes
+
+    *   Transaktioner
+*   Vi kommer att testa det ORM-ramverk som f&ouml;ljer med Play.
+
+    *   Bra f&ouml;r introduktion
+
+    *   K&ouml;r p&aring; in-memory databas
+
+    *   Men &auml;r inte s&auml;rskilt avancerat eller v&auml;lk&auml;nt
+
+### **Laboration: Testa eBean (mot in-memory db).**
+
+*   Skapa projekt
+
+    *   Skapa nytt projekt
+
+    *   K&ouml;r play eclipse
+
+    *   K&ouml;r ~run
+
+    *   Eclipse
+
+        *   Importera Student-modellen fr&aring;n [GitHub](https://gist.github.com/bornemix/9459877)
+
+            *   L&auml;gg till @Entity
+*   F&aring; ig&aring;ng eBean
+
+    *   L&auml;gg till i Build path?
+
+        *   Redan gjort p&aring; default-applikationer
+
+            *   (Detta kommer dock att upph&ouml;ra iom Play 2.3)
+*   Redigera conf/application.conf
+
+    *   Avkommentera de 4 rader som b&ouml;rjar med # db.default
+
+        *   Dvs vilken DB g&aring;r vi mot?
+
+             *   Jo, &ldquo;H2&rdquo;
+
+             *   H&auml;r skulle man kunna mata in MySQL-uppgifter ist&auml;llet
+    *   Avkommentera raden # ebean.default=&quot;models.*&quot;
+
+        *   eBean kollar bara i de paket vi s&auml;ger till den
+*   Testa att h&auml;mta startsidan nu
+
+    *   En &ldquo;evolution&rdquo; kommer nu att k&ouml;ras
+
+        *   (om du n&aring;gon g&aring;ng trycker p&aring; knappen)
+    *   Databasen kommer allts&aring; att &ldquo;levla&rdquo; eller &ldquo;utveckla sig&rdquo;
+
+        *   L&auml;gga till tabeller, kolumner, etc&hellip;
+
+        *   Den skapar ocks&aring; en tabell som heter PLAY_EVOLUTIONS
+
+            *   H&auml;r h&aring;ller Play koll p&aring; vad den gjort och inte gjort
+    *   Kolla under conf/evolutions/default/
+
+            *   Ska ni skapa en ny databas n&aring;gon annanstans, s&aring; k&ouml;r dessa script s&aring; &auml;r ni i hamn
+    *   Likv&auml;rdig funktionalitet finns ocks&aring; i ASP.NET MVC, Django f&ouml;r Python, Laravel f&ouml;r PHP&hellip;
+*   OBS: Detta &auml;r en in-memory databas!
+
+    *   St&auml;ng Play = hejd&aring; data
+
+    *   (Databasmotorn heter H2)
+
+    *   St&auml;ng ner Play, starta igen
+
+        *   Evolutions vill k&ouml;ras igen
+*   L&auml;gg till @Id
+
+*   Lite &ouml;verkurs:
+
+*   F&ouml;r att se denna databas, stanna din server en stund (Ctrl+D, Enter)
+
+    *   Fr&aring;n Play konsolen, k&ouml;r &ldquo;h2-browser&rdquo;
+
+    *   Surfa in p&aring; [localhost:8082](http://localhost:8082/)
+
+        *   Denna applikation &auml;r gjord i JSP...
+    *   (Gl&ouml;m inte att starta din webbserver igen)
+*   Spara &ldquo;initial data&rdquo; Ebean.save()
+
+*   Visa Ebean.find(Student.class).findList()
+
+*   Visa Ebean.find(Student.class, id)
+
+### **Uppgift: K&ouml;r ig&aring;ng med eBean i era projekt.**
+
+*   Mappa upp era modeller p&aring; s&auml;ttet jag visat
+
+    *   @Entity
+
+    *   @Id
+*   Se till att det blir lite evolution-varningar, OK:a dem
+
+*   Flytta era &ldquo;skapa fejk-objekt&rdquo; till en enda fet &ldquo;skapa fejk-data metod&rdquo;
+
+    *   Betyder detta att den ska heta skapaFejkDataMetod?
+
+        *   Nej.
+    *   Ers&auml;tt era metoder som anv&auml;nde fejk-objekten med Ebean-metoderna
+  </div>
+</div>
