@@ -1,0 +1,114 @@
+<div class="container">
+  <div ng-controller="Markdown">
+### Annoteringar
+
+* Får ni felet? (`NoSuchMethodError: javax.persistence.Table.indexes()[Ljavax/persistence/Index`)
+
+	* Ändra då i build.sbt till:
+
+	* `libraryDependencies += "org.hibernate" % "hibernate-entitymanager" % "4.2.8.Final"`
+
+	* Starta om play!
+
+
+*   @Entity
+
+	* Markerar att detta är en klass som JPA ska bry sig om, dvs mappa mot en tabell i databasen
+
+*   @Table
+
+	* Sätts på en klass för att ändra tabellnamn, tex `@Table(name="orders")` 
+
+*   @Id
+
+	* Obligatoriskt på t.ex. en `public int id;` så att JPA kan hitta entiteter vid behov.
+
+*   @GeneratedValue
+
+	* Sätts på ID-propertyn om du vill ha autoincrement
+	
+	* Rör då själv inte id-propertyn, den sätts automatiskt av JPA när du sparar ett objekt
+
+*   @Column
+
+    * Här kan du t.ex. byta kolumnnamn
+
+*   @OneToMany
+
+		* Category.java
+
+			@OneToMany(mappedBy="category") // detta ordet "category" är propertynamnet på Product-klassen!
+
+			public List<Product> products;
+
+		* Product.java
+			@ManyToOne
+
+			public Category category;
+
+		* Alltså kommer produkt-tabellen ha ett category_id  där allt händer.
+
+    *   @ManyToOne
+        
+
+*   @ManyToMany
+
+	* Skapar en mellantabell (det heter faktiskt pivottabell) med referenser till båda typerna
+	
+	* Product.java
+	
+		@ManyToMany
+		
+		List<Category> categories;
+		
+		* Nu skapas en tabell som heter ungefär Product_categories eftersom den mappar categories på klassen product
+		
+		* Gör du samma sak på andra klassen så kommer JPA att göra en till tabell som heter Category_products
+		
+			* Detta kan du förhindra genom att säga (på en av dem) att den mappas genom den andras property
+			
+				@ManyToMany(mappedBy = "categories") // dvs den andra typens property (som pekar på en själv).
+				
+				List<Product> products;
+		
+	* Kör du mot en befintlig databas så får du lägga till en annan Annotation:
+	
+		* Product.java
+	
+			@ManyToMany()
+		
+			@JoinTable(name="category_product",
+				joinColumns = @JoinColumn(name = "product_id"),
+				inverseJoinColumns = @JoinColumn(name = "category_id")
+			)
+		
+			public List<Category> categories;
+		
+			* Den andra typen behöver nog bara @ManyToMany(mappedBy = "categories")
+
+### **Laboration: Byt ut H2 mot MySQL. G&ouml;r databasfr&aring;gor genom JPA.**
+
+* Ändra connection string (i application.conf:)
+
+    	db.default.driver=com.mysql.jdbc.Driver
+
+	    db.default.url="jdbc:mysql://localhost/test"
+
+* Ladda om din webbläsare så du får "class not found" fel.
+
+* Lägg till i built.sbt:
+    	libraryDependencies += "mysql" % "mysql-connector-java" % "5.+"
+
+  (tomma rader före och efter)
+
+* Starta om Play
+
+* Felet ska nu vara försvunnet.
+
+* Du ska nog inte kunna få tabeller skapade förrän du ändrar SQL-dialekt i persistence.xml
+
+    	<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+
+**Uppgift: G&aring; mot MySQL och få igång era relationer.**
+  </div>
+</div>
