@@ -15,19 +15,23 @@
 
 	* Markerar att detta är en klass som JPA ska bry sig om, dvs mappa mot en tabell i databasen
 
+
 *   @Table
 
 	* Sätts på en klass för att ändra tabellnamn, tex `@Table(name="orders")` 
 
+
 *   @Id
 
 	* Obligatoriskt på t.ex. en `public int id;` så att JPA kan hitta entiteter vid behov.
+
 
 *   @GeneratedValue
 
 	* Sätts på ID-propertyn om du vill ha autoincrement
 	
 	* Rör då själv inte id-propertyn, den sätts automatiskt av JPA när du sparar ett objekt
+
 
 *   @Column
 
@@ -110,5 +114,7 @@
     	<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
 
 **Uppgift: G&aring; mot MySQL och få igång era relationer.**
+
+
   </div>
 </div>
