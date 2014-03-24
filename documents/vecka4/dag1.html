@@ -1,0 +1,54 @@
+<div class="container">
+  <div ng-controller="Markdown">
+
+## **Hur formul&auml;rfr&aring;gor fungerar**
+
+*   Reverse routing
+
+*   Ett formul&auml;r &auml;r ett HTML-element (&lt;form&gt;) d&auml;r v&auml;rdena i alla f&auml;lt (&lt;input&gt;, &lt;select&gt; mm) skickas med i ett nytt anrop.
+
+    *   Tex name=alfons, teacher-id=1
+*   Det beh&ouml;vs allts&aring; en metod i din Controller f&ouml;r att **visa formul&auml;ret **f&ouml;r anv&auml;ndaren
+
+*   Det beh&ouml;vs ocks&aring; en metod som **tar emot anropet** som skickas n&auml;r anv&auml;ndaren trycker p&aring; formul&auml;rets &ldquo;Skicka&rdquo;-knapp.
+
+*   F&ouml;r att l&aring;ta formul&auml;ret skicka till en annan URL, ange action=&rdquo;&rdquo;
+
+    *   &lt;form action=&rdquo;/submit-form&rdquo;&gt;
+*   F&ouml;r att l&aring;ta formul&auml;ret g&ouml;ra en POST request - ange method=&rdquo;post&rdquo;
+
+    *   &lt;form action=&rdquo;/submit-form&rdquo; method=&rdquo;post&rdquo;&gt;
+
+    *   Detta &auml;r att f&ouml;redra, d&aring; GET &auml;r d&aring;ligt f&ouml;r requests som g&ouml;r f&ouml;r&auml;ndringar i ditt system
+
+        *   T.ex. skulle Google (eller n&aring;gon annan s&ouml;kmotor) kunna f&ouml;rs&ouml;ka surfa in p&aring; dina URLer och r&aring;ka ta bort allt den surfar in p&aring;
+
+        *   S&ouml;kmotorer g&ouml;r dock endast GET-requests f&ouml;r att undvika att s&aring;dant h&auml;nder
+
+        *   Webbl&auml;sare brukar cache:a GET requests men aldrig POST requests
+
+        *   Webbl&auml;sare varnar om man laddar om en POST request men aldrig en GET request
+
+        *   mm
+*   Mata in en textruta i ditt formul&auml;r
+
+    *   &lt;input type=&rdquo;text&rdquo; name=&rdquo;name&rdquo;&gt;
+
+    *   Nu kommer detta v&auml;rde att f&ouml;lja med till den metod som /submit-form &auml;r mappad mot.
+*   Hur h&auml;mtar man formul&auml;rdata i din Controller?
+
+    *   Map&lt;String, String[]&gt; data = request().getBody().asFormUrlEncoded();
+
+    *   Sedan f&aring;r du arrayer f&ouml;r varje f&auml;lt du vill ha
+
+        *   Oftast &auml;r det bara ett element i dessa arrayer
+    *   Skulle du dock ha tv&aring; formul&auml;rf&auml;lt i ditt &lt;form&gt; som har samma name=&rdquo;&rdquo; s&aring; kommer din array ha tv&aring; element, osv
+
+### **Laboration: G&ouml;r en enkel Student/Teacher applikation.**
+
+*   Se en implementation p&aring; GitHub: https://github.com/yhc3l-java/Form-test
+
+**Uppgift: G&ouml;r formul&auml;r f&ouml;r era produkter, kategorier, mm.**
+
+  </div>
+</div>
