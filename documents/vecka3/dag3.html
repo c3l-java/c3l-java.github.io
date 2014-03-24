@@ -94,6 +94,16 @@
 
 	TypedQuery<Country> query = em.createQuery( "SELECT c FROM Country c WHERE c.name = :minParam", Country.class);
 	Country country = query.setParameter("minParam", name).getSingleResult();
+	
+### Vill du se den SQL som Hibernate använder när den frågar databasen?
+
+	* Lägg till följande i din persistence.xml
+
+		<property name="hibernate.show_sql" value="true"/>
+
+		<property name="hibernate.format_sql" value="true"/>
+		
+	* Obs: Frågorna kommer ut i konsolen, inte din logg.
 
 ### **Laboration: Byt ut H2 mot MySQL. G&ouml;r databasfr&aring;gor genom JPA.**
 
