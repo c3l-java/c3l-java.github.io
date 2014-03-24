@@ -35,18 +35,18 @@
 
 *   @OneToMany
 
-		* Category.java
+	* Category.java
 
-			@OneToMany(mappedBy="category") // detta ordet "category" är propertynamnet på Product-klassen!
+		@OneToMany(mappedBy="category") // detta ordet "category" är propertynamnet på Product-klassen!
 
-			public List<Product> products;
+		public List<Product> products;
 
-		* Product.java
-			@ManyToOne
+	* Product.java
+		@ManyToOne
 
-			public Category category;
+		public Category category;
 
-		* Alltså kommer produkt-tabellen ha ett category_id  där allt händer.
+	* Alltså kommer produkt-tabellen ha ett category_id  där allt händer.
 
     *   @ManyToOne
         
