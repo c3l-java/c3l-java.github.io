@@ -89,6 +89,11 @@
 			public List<Category> categories;
 		
 			* Den andra typen behöver nog bara @ManyToMany(mappedBy = "categories")
+			
+### Vill du söka efter objekt genom JPA?
+
+	TypedQuery<Country> query = em.createQuery( "SELECT c FROM Country c WHERE c.name = :minParam", Country.class);
+	Country country = query.setParameter("minParam", name).getSingleResult();
 
 ### **Laboration: Byt ut H2 mot MySQL. G&ouml;r databasfr&aring;gor genom JPA.**
 
