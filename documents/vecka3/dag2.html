@@ -1,0 +1,166 @@
+<div class="container">
+  <div ng-controller="Markdown">
+## **Hur Hibernate fungerar (mappning)**
+
+*   Idag ska vi k&ouml;ra &ldquo;JPA&rdquo;
+
+*   Ist&auml;llet f&ouml;r att k&ouml;ra mot Ebeans klasser, s&aring; k&ouml;r vi mot Java EE:s interfaces
+
+*   Sedan st&auml;ller vi in att Play! ska f&ouml;rs&ouml;ka ladda Hibernate, och varifr&aring;n Hibernate ska ta sina connection-uppgifter
+
+*   Hibernate &auml;r likt eBean, men
+
+    *   mer v&auml;lk&auml;nt
+
+    *   mer robust
+
+    *   mer komplext
+
+    *   en implementation av JPA
+
+        *   Lite mer komplext att f&aring; ig&aring;ng&hellip;
+
+        *   Pga att man ska kunna hot-switcha mellan ORM-ramverk utan att kompilera om,
+
+        *   s&aring; st&aring;r v&aring;r enda referens till Hibernate i en XML-fil, &ldquo;aldrig&rdquo; i kod
+
+### **Laboration: Byt ut Ebean/H2 mot Hibernate.**
+
+*   St&auml;ng av evolutions
+
+    *   &ldquo;Fungerar inte s&aring; bra tillsammans med Hibernate&rdquo;, har jag h&ouml;rt
+
+        *   Jag har iallafall inte f&aring;tt ig&aring;ng det
+    *   Hibernate kan skapa databas p&aring; eget s&auml;tt, &auml;nd&aring;
+
+        *   Vilket &auml;r &auml;nd&aring; mer v&auml;lk&auml;nt &auml;n Play-evolutions
+    *   Ta bort din conf/evolutions mapp
+
+    *   Redigera conf/application.conf
+
+        *   Avkommentera raden # evolutionplugin=disabled
+*   L&auml;gg till JPA
+
+    *   L&auml;gg till i build.sbt
+
+        *   javaJpa
+    *   Starta om Play
+
+    *   K&ouml;r &ldquo;eclipse&rdquo;
+
+    *   Tryck &ldquo;Refresh&rdquo; p&aring; ditt projekt
+
+        *   Detta laddar in det nya biblioteket i eclipse, s&aring; du inte f&aring;r on&ouml;diga fel
+*   Nu m&aring;ste du ers&auml;tta alla dina Ebean-anrop med JPA.
+
+    *   JPA-klassen underl&auml;ttar
+
+        *   JPA.em() &larr; h&auml;mtar det ORM-ramverk som du just nu anv&auml;nder
+    *   F&ouml;r att hitta alla studenter
+
+        *   JPA.em().createQuery(&quot;SELECT a FROM Student a&quot;, Student.class).getResultList()
+
+            *   Japp, SQL &auml;r ett m&aring;ste - finns ingen &ldquo;findAll&rdquo;
+    *   F&ouml;r att hitta en student
+
+        *   JPA.em().find(Student.class, 1)
+    *   F&ouml;r att spara en student
+
+        *   JPA.em().persist(student)
+*   Ta bort Ebean
+
+    *   Kommentera (//, eller ta bort helt) bort i build.sbt
+
+        *   javaJdbc
+
+        *   javaEbean
+    *   Starta om Play
+
+    *   K&ouml;r &ldquo;eclipse&rdquo;
+
+    *   Nu kommer alla dina Ebean-referenser att g&aring; s&ouml;nder.
+
+        *   Detta &auml;r dock bra, f&ouml;r tanken &auml;r ju att bli av med dem!
+
+        *   Forts&auml;tt ers&auml;tta dina Ebean-anrop tills du kan k&ouml;ra &ldquo;eclipse&rdquo; utan errors.
+    *   H&ouml;gerklicka p&aring; projektet och v&auml;lj &ldquo;Uppdatera&rdquo;
+
+    *   Dubbelkolla s&aring; inga fel finns
+
+    *   &Auml;ndra i conf/application.conf
+
+        *   Nu beh&ouml;ver du inte raden &ldquo;ebean.default &hellip;&rdquo; s&aring; kommentera bort den igen.
+*   Surfa in p&aring; siten igen.
+
+*   Alla metoder som anv&auml;nder JPA beh&ouml;ver Noteringen @Transactional
+
+    *   (inte javax eller eBean - utan den som finns i Play)
+
+    *   G&ouml;r du inte detta, s&aring; f&aring;r du felet &ldquo;No EntityManager bound to this thread. &hellip;&rdquo;
+*   Nu ska du f&aring; felet &ldquo;No JPA EntityManagerFactory configured for name [default]&rdquo;
+
+    *   Varf&ouml;r?
+
+    *   D&auml;rf&ouml;r vi k&ouml;r nu bara JPA-anrop, dvs mot ett interface
+
+    *   Vi har ingen implementation installerad &auml;n!!!
+
+    *   Dvs Hibernate
+*   L&auml;gg till en dependency till Hibernate i din build.sbt
+
+    *   libraryDependencies += &quot;org.hibernate&quot; % &quot;hibernate-entitymanager&quot; % &quot;4.3.+&quot;
+
+    *   Tom rad f&ouml;re och efter, tack
+
+    *   Starta om Play
+
+    *   Du beh&ouml;ver inte k&ouml;ra &ldquo;eclipse&rdquo; eller uppdatera projektet
+
+        *   Eclipse anv&auml;nder redan interfacen fr&aring;n JPA, beh&ouml;ver inte n&aring;got fr&aring;n Hibernate
+*   Surfa in p&aring; siten igen.
+
+    *   Samma fel som innan: &ldquo;No JPA EntityManagerFactory configured for name [default]&rdquo;
+
+    *   Vi har installerat Hibernate, men inte sagt till JPA vilket ORM-ramverk som ska laddas
+*   &Auml;ndra i conf/application.conf
+
+    *   Passa p&aring; att avkommentera raden: # db.default.jndiName=DefaultDS
+
+    *   L&auml;gg till en ny rad efter: &ldquo;jpa.default=defaultPersistenceUnit&rdquo;
+
+    *   Detta ord &ldquo;defaultPersistenceUnit&rdquo; pekar p&aring; ett ORM-ramverk som ska vara beskrivet i persistence.xml
+
+    *   conf/META-INF/persistence.xml &auml;r en JPA-fil som m&aring;ste finnas
+
+        *   Ett exempel p&aring; det vi vill ha finns p&aring; [GitHub](https://gist.github.com/bornemix/d55893d1629c451733ea)
+
+        *   Om inte filen finns, eller har fel namn, kommer du se felet &ldquo;No Persistence provider for EntityManager named defaultPersistenceUnit&rdquo;
+*   Surfa in p&aring; siten igen.
+
+*   Om du f&aring;r ett &ldquo;Unable to build Hibernate SessionFactory&rdquo;?
+
+    *   Kolla i logs/application.log f&ouml;r det &ldquo;riktiga&rdquo; exceptionet
+*   Om du f&aring;r ett &ldquo;PersistenceException: org.hibernate.exception.SQLGrammarException: could not prepare statement]&rdquo;?
+
+    *   Samma sak, kolla loggen
+*   Om du f&aring;r ett fel som heter ungef&auml;r &ldquo;Could not find table &hellip;&rdquo;
+
+    *   Grattis, den kontaktar databasen
+
+    *   Avkommentera raden i persistence.xml f&ouml;r att l&aring;ta Hibernate skapa databasen
+
+### **Uppgift: Annotera era modeller fr&aring;n floggit och g&aring; mot er gamla MySQL-databas.**
+
+*   Kommentera bort raden i persistence.xml igen
+
+*   Mappa era modeller mot den databas ni redan har p&aring; MySQL.
+
+*   Byt inte namn p&aring; era properties f&ouml;r att matcha era kolumnnamn!
+
+    *   Man kan fixa det med @Column(name=&rdquo;&hellip;&rdquo;)
+*   Byt inte datatyp f&ouml;r att matcha era properties!
+
+    *   Man kan fixa det med @Column(columnDefinition=&rdquo;&hellip;&rdquo;)
+*   Anv&auml;nd @OneToMany (och dess parametrar) f&ouml;r att skapa List&lt;&hellip;&gt;
+  </div>
+</div>
