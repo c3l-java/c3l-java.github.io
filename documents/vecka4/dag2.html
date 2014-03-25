@@ -1,0 +1,45 @@
+<div class="container">
+  <div ng-controller="Markdown">
+## **Hur autentisering fungerar**
+
+*   HTTP &auml;r stateless i sig sj&auml;lvt
+
+    *   Om du ska komma ih&aring;g n&aring;gonting mellan olika anrop, s&aring; m&aring;ste man skicka med det sj&auml;lv
+*   Hur kommer servrar ih&aring;g saker och ting d&aring;?
+
+    *   Servern sparar en Map med v&auml;rden f&ouml;r olika users
+
+    *   Denna Map kallas &ldquo;Sessionen&rdquo;
+
+    *   Sessionen identifieras med en nyckel, t.ex. 4e7b3da98d04cce0aeea1f91b5d5d83d77fef86d-username=bjorn
+
+    *   Denna map sparas med en viss nyckel
+
+    *   Denna skickas med som en cookie
+
+    *   &nbsp;
+*   Man skickar med en nyckel f&ouml;r en session
+
+*   Vi kan i Play m&auml;rka ut actions med @Security.Authenticated
+
+*   D&aring; kommer Play automatiskt att kolla om det finns n&aring;got som heter &ldquo;username&rdquo; i nuvarande sessionen
+
+    *   Om ja: Som vanligt
+
+    *   Om nej: Visa &ldquo;not authorized&rdquo;
+*   Sessionen hittar man genom session() och den &auml;r i princip en vanlig Map.
+
+### **Laboration: Skapa autentisering f&ouml;r Student/Teacher-projektet**
+
+*   &nbsp;
+
+### **Uppgift: Skapa autentisering f&ouml;r era projekt**
+
+*   Skydda formul&auml;r samt deras submit-metoder
+
+*   Skapa inloggningsformul&auml;r
+
+    *   Dessa ska f&ouml;rst&aring;s inte vara skyddade&hellip;
+    
+  </div>
+</div>
